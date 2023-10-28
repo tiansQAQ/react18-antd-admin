@@ -1,0 +1,13 @@
+.side-menu {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  .side-menu-header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 64px;
+    color: #fff;
+    background-color: #001529;
+  }
+}
