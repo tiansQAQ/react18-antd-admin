@@ -28,5 +28,5 @@ export default function ScreenFull() {
     }
     screenfull.toggle()
   }
-  return React.createElement(isFullScreen ? FullscreenExitOutlined : FullscreenOutlined, { className: 'poi', onClick: handleScreenFull })
+  return React.createElement(isFullScreen ? FullscreenExitOutlined : FullscreenOutlined, { className: 'poi mr10', onClick: handleScreenFull })
 }
