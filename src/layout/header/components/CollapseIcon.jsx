@@ -2,7 +2,6 @@
 import { MenuFoldOutlined, MenuUnfoldOutlined } from '@ant-design/icons'
 import { useSelector, useDispatch } from 'react-redux'
 import { updateCollapse } from '@/store/modules/menu'
-const collapseIconStyle = { fontSize: '18px', cursor: 'pointer' }
 
 export default function CollapseIcon() {
   const dispatch = useDispatch()
@@ -14,7 +13,7 @@ export default function CollapseIcon() {
         dispatch(updateCollapse(!isCollapse))
       }}
     >
-      {isCollapse ? <MenuUnfoldOutlined style={collapseIconStyle} /> : <MenuFoldOutlined style={collapseIconStyle} />}
+      {isCollapse ? <MenuUnfoldOutlined className="poi" /> : <MenuFoldOutlined className="poi" />}
     </span>
   )
 }
