@@ -4,7 +4,9 @@ import { useEffect, useState } from 'react'
 import { getData } from '@/api/data'
 import * as Icons from '@ant-design/icons'
 import { useLocation, useNavigate } from 'react-router-dom'
+import Logo from './components/Logo'
 import './index.scss'
+
 export default function Menu() {
   // 菜单列表
   const [menuList, setMenuList] = useState([])
@@ -69,8 +71,8 @@ export default function Menu() {
 
   return (
     <div className="side-menu">
-      <div className="side-menu-header flex align-center justify-center">side-menu-header</div>
-      <AntMenu style={{ flex: '1', overflow: 'auto' }} items={menuList} selectedKeys={selectedKeys} theme="dark" mode="inline" onClick={handleClickMenu} />
+      <Logo />
+      <AntMenu style={{ flex: '1', overflow: 'auto', transition: 'none' }} items={menuList} selectedKeys={selectedKeys} theme="dark" mode="inline" onClick={handleClickMenu} />
     </div>
   )
 }
