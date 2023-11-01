@@ -9,6 +9,7 @@ export default function CollapseIcon() {
 
   return (
     <span
+      className="mr10"
       onClick={() => {
         dispatch(updateCollapse(!isCollapse))
       }}

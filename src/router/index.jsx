@@ -4,7 +4,7 @@ import Login from '@/views/login'
 /* Router Modules */
 import homeRouter from './modules/home'
 import proTable from './modules/proTable'
-
+import nestMenu from './modules/nestMenu'
 const rootRouter = [
   {
     path: '/',
@@ -21,6 +21,7 @@ const rootRouter = [
   },
   ...homeRouter,
   ...proTable,
+  ...nestMenu,
   {
     path: '*',
     element: <Navigate to="/404" />

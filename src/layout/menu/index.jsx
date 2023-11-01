@@ -6,13 +6,17 @@ import * as Icons from '@ant-design/icons'
 import { useLocation, useNavigate } from 'react-router-dom'
 import Logo from './components/Logo'
 import './index.scss'
+import { getMatched } from '@/utils/formatRouter'
+import { setBreadcurmbs } from '@/store/modules/breadcurmb'
+import { useDispatch } from 'react-redux'
 
 export default function Menu() {
-  // 菜单列表
-  const [menuList, setMenuList] = useState([])
-
+  const dispatch = useDispatch()
   const { pathname } = useLocation()
   const navigate = useNavigate()
+
+  // 菜单列表
+  const [menuList, setMenuList] = useState([])
 
   // 当前路由的pathname
   const [selectedKeys, setSelectedKeys] = useState([pathname])
@@ -40,8 +44,10 @@ export default function Menu() {
   // 获取菜单数据
   const getMenuData = async () => {
     const { data } = await getData()
-    // console.log('data: ', data)
     setMenuList(menuDeepLoop(data))
+    // 获取面包屑列表
+    const breadcurmbs = getMatched(data)
+    dispatch(setBreadcurmbs(breadcurmbs))
   }
   useEffect(() => {
     getMenuData()
