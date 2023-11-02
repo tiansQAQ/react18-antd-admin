@@ -5,12 +5,14 @@ import { getData } from '@/api/data'
 import * as Icons from '@ant-design/icons'
 import { useLocation, useNavigate } from 'react-router-dom'
 import Logo from './components/Logo'
-import './index.scss'
 import { getMatched } from '@/utils/formatRouter'
 import { setBreadcurmbs } from '@/store/modules/breadcurmb'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
+import './index.scss'
 
 export default function Menu() {
+  const { isCollapse } = useSelector((state) => state.menu)
+
   const dispatch = useDispatch()
   const { pathname } = useLocation()
   const navigate = useNavigate()
@@ -20,6 +22,20 @@ export default function Menu() {
 
   // 当前路由的pathname
   const [selectedKeys, setSelectedKeys] = useState([pathname])
+
+  const [openKeys, setOpenKeys] = useState([])
+
+  // 根据pathname获取menu需要的openKeys
+  const getOpenKeys = (path) => {
+    let newStr = ''
+    let newArr = []
+    const arr = path.split('/').map((item) => '/' + item)
+    for (let i = 1; i < arr.length - 1; i++) {
+      newStr += arr[i]
+      newArr.push(newStr)
+    }
+    return newArr
+  }
 
   // pathname 改变时,重新设置当前菜单选中项
   useEffect(() => {
@@ -53,6 +69,11 @@ export default function Menu() {
     getMenuData()
   }, [])
 
+  useEffect(() => {
+    // 初始化展开路由所属菜单
+    setOpenKeys(getOpenKeys(pathname))
+  }, [isCollapse])
+
   // menu click 页面跳转
   const handleClickMenu = ({ key }) => {
     const route = searchRoute(key, menuList)
@@ -78,7 +99,19 @@ export default function Menu() {
   return (
     <div className="side-menu">
       <Logo />
-      <AntMenu style={{ flex: '1', overflow: 'auto', transition: 'none' }} items={menuList} selectedKeys={selectedKeys} theme="dark" mode="inline" onClick={handleClickMenu} />
+      <AntMenu
+        style={{ flex: '1', overflow: 'auto' }}
+        items={menuList}
+        selectedKeys={selectedKeys}
+        openKeys={openKeys}
+        theme="dark"
+        mode="inline"
+        triggerSubMenuAction="click"
+        onClick={handleClickMenu}
+        onOpenChange={(openKeys) => {
+          setOpenKeys(openKeys)
+        }}
+      />
     </div>
   )
 }
