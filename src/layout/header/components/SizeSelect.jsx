@@ -18,7 +18,7 @@ export default function SizeSelect() {
   ]
 
   return (
-    <Dropdown menu={{ items }} placement="bottom" trigger="click">
+    <Dropdown className="mr10" menu={{ items }} placement="bottom">
       <FontSizeOutlined className="poi" />
     </Dropdown>
   )

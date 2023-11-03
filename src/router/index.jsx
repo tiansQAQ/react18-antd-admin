@@ -1,6 +1,7 @@
 import { useRoutes, Navigate } from 'react-router-dom'
 import Login from '@/views/login'
-
+import UserCenter from '@/views/userCenter'
+import Layout from '@/layout'
 /* Router Modules */
 import homeRouter from './modules/home'
 import proTable from './modules/proTable'
@@ -19,6 +20,22 @@ const rootRouter = [
       key: 'login'
     }
   },
+
+  {
+    element: <Layout />,
+    children: [
+      {
+        path: '/userCenter',
+        element: <UserCenter />,
+        meta: {
+          requiresAuth: false,
+          title: '个人中心',
+          key: 'userCenter'
+        }
+      }
+    ]
+  },
+
   ...homeRouter,
   ...proTable,
   ...nestMenu,
