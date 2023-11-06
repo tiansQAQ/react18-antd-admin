@@ -4,17 +4,20 @@
 .mr10 {
   margin-right: 10px;
 }
-
 .poi {
   cursor: pointer;
 }
-
 .flex-center-between {
   display: flex;
   align-items: center;
   justify-content: space-between;
 }
-.flex-center {
+.flex-center-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.align-center {
   display: flex;
   align-items: center;
 }

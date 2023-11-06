@@ -240,10 +240,21 @@ export const menuData = {
   msg: '成功'
 }
 
+// 模拟获取路由列表
 export function getData() {
+  return commonPromise(menuData)
+}
+
+// 模拟登录
+const loginData = { code: 200, data: { accessToken: '123456' } }
+export function login() {
+  return commonPromise(loginData)
+}
+
+function commonPromise(data) {
   return new Promise((resolve) => {
     setTimeout(() => {
-      resolve(menuData)
+      resolve(data)
     }, 1000)
   })
 }

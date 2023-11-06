@@ -9,11 +9,11 @@ export default function Header() {
   const { Header } = AntLayout
   return (
     <Header style={{ backgroundColor: '#fff', padding: '0 20px' }} className="flex-center-between">
-      <div className="header-left flex-center">
+      <div className="header-left align-center">
         <CollapseIcon />
         <Breadcrumb />
       </div>
-      <div className="header-right flex-center">
+      <div className="header-right align-center">
         <ScreenFull />
         <SizeSelect />
         <UserAvatar />
