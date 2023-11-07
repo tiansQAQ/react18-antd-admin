@@ -1,12 +1,13 @@
-import { Avatar, Dropdown } from 'antd'
+import { Avatar, Dropdown, Modal } from 'antd'
 import { UserOutlined } from '@ant-design/icons'
-import { useNavigate } from 'react-router-dom'
+import { useLocation, useNavigate } from 'react-router-dom'
 import EditPwdModal from './EditPwdModal'
-import { useRef, useState } from 'react'
+import { useRef } from 'react'
 
 // 用户信息
 export default function UserAvatar() {
   const navigate = useNavigate()
+  const location = useLocation()
   const editPwdModalRef = useRef(null)
   const items = [
     {
@@ -31,7 +32,18 @@ export default function UserAvatar() {
     },
     {
       key: '4',
-      label: '退出登录'
+      label: '退出登录',
+      onClick: () => {
+        Modal.confirm({
+          title: '温馨提示',
+          content: '是否确认退出登录？',
+          onOk() {
+            const fullPath = `${location.pathname}${location.search}`
+            navigate(`/login?redirect=${fullPath}`)
+          },
+          onCancel() {}
+        })
+      }
     }
   ]
   return (
