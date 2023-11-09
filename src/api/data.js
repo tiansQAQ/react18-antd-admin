@@ -246,7 +246,7 @@ export function getData() {
 }
 
 // 模拟登录
-const loginData = { code: 200, data: { accessToken: '123456' } }
+const loginData = { code: 200, data: { accessToken: 'token123456' } }
 export function login() {
   return commonPromise(loginData)
 }

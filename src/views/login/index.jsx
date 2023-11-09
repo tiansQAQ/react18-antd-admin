@@ -1,20 +1,21 @@
 import { Form, Input, Card, Button, message } from 'antd'
 import './index.scss'
 import { useState } from 'react'
-import { login } from '@/api/data'
 import { useNavigate } from 'react-router-dom'
 import { HOME_URL } from '@/config'
+import { userActions } from '@/store/modules/user'
+import { useDispatch } from 'react-redux'
 export default function Login() {
   const navigate = useNavigate()
+  const dispatch = useDispatch()
   const [loginLoading, setsetLoginLoading] = useState(false)
 
   const onFinish = async (values) => {
     setsetLoginLoading(true)
-    const { code } = await login(values).finally(() => setsetLoginLoading(false))
-    if (code === 200) {
-      message.success('登录成功！')
-      navigate(HOME_URL, { replace: true })
-    }
+    dispatch(userActions.login(values)).finally(() => {
+      setsetLoginLoading(false)
+    })
+    navigate(HOME_URL)
   }
   return (
     <div className="login-container flex-center-center">

@@ -3,11 +3,15 @@ import { UserOutlined } from '@ant-design/icons'
 import { useLocation, useNavigate } from 'react-router-dom'
 import EditPwdModal from './EditPwdModal'
 import { useRef } from 'react'
+import { useDispatch } from 'react-redux'
+import { userActions } from '@/store/modules/user'
 
 // 用户信息
 export default function UserAvatar() {
   const navigate = useNavigate()
   const location = useLocation()
+  const dispatch = useDispatch()
+  
   const editPwdModalRef = useRef(null)
   const items = [
     {
@@ -37,7 +41,8 @@ export default function UserAvatar() {
         Modal.confirm({
           title: '温馨提示',
           content: '是否确认退出登录？',
-          onOk() {
+          async onOk() {
+            await dispatch(userActions.logout())
             const fullPath = `${location.pathname}${location.search}`
             navigate(`/login?redirect=${fullPath}`)
           },
