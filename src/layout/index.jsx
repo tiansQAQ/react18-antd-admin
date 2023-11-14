@@ -15,7 +15,7 @@ export default function Layout() {
       <Sider style={{ height: '100%', backgroundColor: '#001529', transition: 'all .2s' }} trigger={null} width={220} collapsed={isCollapse}>
         <Menu />
       </Sider>
-      <AntLayout>
+      <AntLayout style={{ overflowX: 'hidden' }}>
         <Header />
         <Tabs />
         <Content>

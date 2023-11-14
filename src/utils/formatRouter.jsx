@@ -40,3 +40,30 @@ export function getMatched(routes) {
   const pathMap = createRouteMap(routes)
   return pathMap
 }
+
+/**
+ * 根据pathname查找路由对象
+ * @param {*} pathname  地址
+ * @param {*} routerList 路由列表
+ */
+export function searchRoute(pathname, routerList) {
+  const list = flattenTree(routerList)
+  const result = list.find((item) => item.path === pathname)
+  return result
+}
+
+// 将树形结构转换一维数组
+export function flattenTree(list) {
+  let result = []
+  list.forEach((item) => {
+    // 没有children
+    if (!item.children) {
+      result.push(item)
+    }
+    if (item.children && item.children.length > 0) {
+      let tempResult = flattenTree(item.children)
+      result = [...result, ...tempResult]
+    }
+  })
+  return result
+}
