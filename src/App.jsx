@@ -4,6 +4,7 @@ import { HashRouter } from 'react-router-dom'
 import Router from '@/router'
 // redux
 import { useSelector } from 'react-redux'
+import Permission from './Permission'
 
 function App() {
   const { componentSize } = useSelector((state) => state.global)
@@ -11,7 +12,9 @@ function App() {
   return (
     <HashRouter>
       <ConfigProvider locale={zhCN} componentSize={componentSize}>
-        <Router />
+        <Permission>
+          <Router />
+        </Permission>
       </ConfigProvider>
     </HashRouter>
   )

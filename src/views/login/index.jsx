@@ -12,10 +12,15 @@ export default function Login() {
 
   const onFinish = async (values) => {
     setsetLoginLoading(true)
-    dispatch(userActions.login(values)).finally(() => {
-      setsetLoginLoading(false)
-    })
-    navigate(HOME_URL)
+    dispatch(userActions.login(values))
+      .then(() => {
+        setsetLoginLoading(false)
+        // 跳转到首页
+        navigate(HOME_URL)
+      })
+      .catch(() => {
+        setsetLoginLoading(false)
+      })
   }
   return (
     <div className="login-container flex-center-center">
